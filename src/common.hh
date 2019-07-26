@@ -9,8 +9,9 @@
     vec2.x, vec2.y
 
 
-template <typename T>
-struct Vec3{
+template <typename T> struct
+Vec3
+{
     T x, y, z;
 
     Vec3() = default;
@@ -23,8 +24,9 @@ typedef Vec3<float> Color3f;
 typedef Vec3<float> Coord3D;
 
 
-template <typename T>
-struct Vec2{
+template <typename T> struct
+Vec2
+{
     T x, y;
 
     Vec2() = default;
@@ -34,5 +36,25 @@ struct Vec2{
 
 typedef Vec2<float> Vec2f;
 typedef Vec2<float> Coord2D;
+
+
+struct
+CubeFaceColor
+{
+    Color3f front   = Color3f(1, 0, 0);
+    Color3f left    = Color3f(0, 1, 0);
+    Color3f top     = Color3f(1, 1, 0);
+    Color3f right   = Color3f(0, 0, 1);
+    Color3f bottom  = Color3f(1, 0, 1);
+    Color3f back    = Color3f(1, 1, 1);
+};
+
+struct
+CameraData
+{
+    Coord3D pos;
+    Coord3D rot;
+    float rotAngle;
+};
 
 #endif

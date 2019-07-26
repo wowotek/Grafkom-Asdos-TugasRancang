@@ -5,8 +5,16 @@
 #include "render.hh"
 #include "structure.hh"
 
-float angle = 0;
-float zoom = 0;
+
+CameraData * cameraRendererP;
+void (* controlCallback)();
+
+void
+InitRenderer(CameraData * initCamera, void (* cb)())
+{
+    cameraRendererP = initCamera;
+    controlCallback = cb;
+}
 
 void
 RenderDisplay()
@@ -15,47 +23,31 @@ RenderDisplay()
     glMatrixMode(GL_MODELVIEW);     
 
     glLoadIdentity();
-    glTranslatef(0, 0, -10);
-    // glRotatef(angle, 1, 1, 0.25);
-    
-    Box(Coord3D(0, 0, 0), Coord3D(2, 20, 2));
-    // glBegin(GL_QUADS);
-    //     glColor3f(1, 0, 0);
-    //     glVertex3f( 1.0f, 1.0f, -1.0f);
-    //     glVertex3f(-1.0f, 1.0f, -1.0f);
-    //     glVertex3f(-1.0f, 1.0f,  1.0f);
-    //     glVertex3f( 1.0f, 1.0f,  1.0f);
+    glTranslatef(
+        cameraRendererP->pos.x,
+        cameraRendererP->pos.y,
+        cameraRendererP->pos.z
+    );
+    glRotatef(0, 1, 1, 0.25);
 
-    //     glColor3f(0, 1, 0);
-    //     glVertex3f( 1.0f, -1.0f,  1.0f);
-    //     glVertex3f(-1.0f, -1.0f,  1.0f);
-    //     glVertex3f(-1.0f, -1.0f, -1.0f);
-    //     glVertex3f( 1.0f, -1.0f, -1.0f);
+    // floor
+    glColor3f(0.5, 0.5, 0.5);
+    for(int x = -100; x < 100; x++)
+    {
+        for(int z = -100; z < 100; z++)
+        {
+            glBegin(GL_LINE_LOOP);
+                glVertex3f(0+x, 0, 0+z);
+                glVertex3f(0+x, 0, 1+z);
+                glVertex3f(1+x, 0, 1+z);
+                glVertex3f(1+x, 0, 0+z);
+            glEnd();
+        }
+    }
 
-    //     glColor3f(1, 1, 0);
-    //     glVertex3f( 1.0f,  1.0f, 1.0f);
-    //     glVertex3f(-1.0f,  1.0f, 1.0f);
-    //     glVertex3f(-1.0f, -1.0f, 1.0f);
-    //     glVertex3f( 1.0f, -1.0f, 1.0f);
+    Box(Coord3D(1, 1, 1), Coord3D(2, 2, 2));
 
-    //     glColor3f(0, 0, 1);
-    //     glVertex3f( 1.0f, -1.0f, -1.0f);
-    //     glVertex3f(-1.0f, -1.0f, -1.0f);
-    //     glVertex3f(-1.0f,  1.0f, -1.0f);
-    //     glVertex3f( 1.0f,  1.0f, -1.0f);
-
-    //     glColor3f(1, 0, 1);
-    //     glVertex3f(-1.0f,  1.0f,  1.0f);
-    //     glVertex3f(-1.0f,  1.0f, -1.0f);
-    //     glVertex3f(-1.0f, -1.0f, -1.0f);
-    //     glVertex3f(-1.0f, -1.0f,  1.0f);
-
-    //     glColor3f(0, 1, 1);
-    //     glVertex3f(1.0f,  1.0f, -1.0f);
-    //     glVertex3f(1.0f,  1.0f,  1.0f);
-    //     glVertex3f(1.0f, -1.0f,  1.0f);
-    //     glVertex3f(1.0f, -1.0f, -1.0f);
-    // glEnd();
+    glMatrixMode(GL_PROJECTION);
 
     glutSwapBuffers();
 }
@@ -63,11 +55,7 @@ RenderDisplay()
 void
 BlitDisplay(int)
 {
-    angle+= 1;
-    zoom = (((sin((M_PI * (angle/360))) / 2) + 0.5) * -10) - 5;
-
-    std::cerr << angle << " " << zoom << "           \r";
-
+    (*controlCallback)();
     glutPostRedisplay();
     glutTimerFunc(16, BlitDisplay, 0);
 }
@@ -75,15 +63,19 @@ BlitDisplay(int)
 void
 ReshapeDisplay(int newHeight, int newWidth)
 {
-    if (newHeight == 0) newHeight = 1;
+    // if (newHeight == 0) newHeight = 1;
 
-    float aspect = (float)newWidth / (float)newHeight;
-    glViewport(0, 0, newWidth, newHeight);
+    // float aspect = (float)newWidth / (float)newHeight;
+    glViewport(0, 0, newHeight, newWidth);
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 
-    gluPerspective(45.0f, aspect, 1.0f, 120.0f);
-    
+    gluPerspective(
+        45.0f, (float)(newHeight) / (float)(newWidth), 1.0f, 1000.0f
+    );
+
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
     glutPostRedisplay();
 }

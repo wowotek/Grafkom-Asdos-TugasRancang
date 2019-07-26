@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <GL/glut.h>
@@ -8,26 +9,57 @@
 #include "control.hh"
 #include "render.hh"
 
-int main(int argc, char ** argv)
+CameraData camera;
+std::vector<unsigned char> keyPresses;
+std::vector<int> specKeyPresses;
+
+void
+Init()
+{
+    camera.pos.y = -2;
+    camera.pos.z = -10;
+    InitControl(&camera, &keyPresses, &specKeyPresses);
+    InitRenderer(&camera, &ControlCallback);
+}
+
+int
+main(int argc, char ** argv)
 {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
-    glutInitWindowSize(800, 800);
-    glutInitWindowPosition(2450, 100);
+    glutInitWindowSize(1600, 900);
+    glutInitWindowPosition(2100, 100);
     glutCreateWindow("TR-GRAFKOM-ASDOS");
+
+    // Mouse
+    glutMouseFunc(MouseButtonEventHandler);
+    glutMotionFunc(MouseDragEventHandler);
+    glutPassiveMotionFunc(MouseMoveEventHandler);
+    
+    // Keyboard
+    glutKeyboardFunc(KeyboardDownEventHandler);
+    glutKeyboardUpFunc(KeyboardUpEventHandler);
+    glutSpecialFunc(KeyboardSpecialDownEventHandler);
+    glutSpecialUpFunc(KeyboardSpecialUpEventHandler);
 
     glutDisplayFunc(RenderDisplay);
     glutReshapeFunc(ReshapeDisplay);
 
-    glutMouseFunc(MouseButtonEventHandler);
-    glutMotionFunc(MouseDragEventHandler);
-    glutPassiveMotionFunc(MouseMoveEventHandler);
+    glViewport(0, 0, 1600, 900);
+
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+
+    gluPerspective(
+        45.0f, (float)(900) / (float)(1600), 1.0f, 1000.0f
+    );
+
+    Init();
 
     glutTimerFunc(16, BlitDisplay, 0);
 
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f); 
     glClearDepth(1.0f);
-
 
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_BLEND);
@@ -38,11 +70,12 @@ int main(int argc, char ** argv)
 
     glEnable(GL_TEXTURE_2D);
 
-    glEnable(GL_DEPTH_TEST);   
-    glDepthFunc(GL_LEQUAL);    
     glShadeModel(GL_SMOOTH); 
 
-    glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);  
+    glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST); 
+
+    glEnable(GL_DEPTH_TEST);   
+    glDepthFunc(GL_LEQUAL);    
 
     glLoadIdentity();
 
