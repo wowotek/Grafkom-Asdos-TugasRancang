@@ -28,8 +28,11 @@ render.o: src/render.cc src/render.hh
 structure.o: src/structure.cc src/structure.hh
 	$(CC) $(CFLAGS) -c src/structure.cc -o build/o/structure.o
 
+keyboard.o: src/keyboard_impl_glut.cc src/keyboard.hh
+	$(CC) $(CFLAGS) -c src/keyboard_impl_glut.cc -o build/o/keyboard.o
+
 main.o: src/main.cc
 	$(CC) $(CFLAGS) -c src/main.cc -o build/o/main.o
 
-$(EXEC): control.o render.o structure.o main.o
-	$(CC) $(CFLAGS) build/o/control.o build/o/render.o build/o/structure.o build/o/main.o $(CDEPS) -o build/bin/$(EXEC)
+$(EXEC): control.o render.o structure.o keyboard.o main.o
+	$(CC) $(CFLAGS) build/o/control.o build/o/render.o build/o/structure.o  build/o/keyboard.o build/o/main.o $(CDEPS) -o build/bin/$(EXEC)

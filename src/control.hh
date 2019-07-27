@@ -5,10 +5,7 @@
 
 #include "common.hh"
 
-void InitControl(
-    CameraData *,
-    std::vector<unsigned char> *,
-    std::vector<int> *);
+void InitControl(CameraData *);
 
 void MouseButtonEventHandler(int, int, int, int);
 void MouseDragEventHandler(int, int);

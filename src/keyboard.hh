@@ -2,30 +2,20 @@
 #define KEYBOARD_HH
 
 #include <map>
+#include <memory>
 
-class Keyboard
+struct Keyboard
 {
-    struct Impl;
-    std::unique_ptr<Impl> p
-
     enum Key: uint32_t
     {
         W = 1,
         A = 2,
         S = 3,
         D = 4,
-        SHIFT = 5,
-        LEFT_CONTROL = 6
+        LEFT_SHIFT = 5,
+        LEFT_CONTROL = 6,
+        SPACE = 7
     };
-
-    static const uint32_t MAX_KEY_COUNT = 16U;
-
-    using Keymap = std::map<Key, bool>;
-    Keymap pressedKeys, toggledKeys;
-
-    void toggleKey (Key k);
-
-    public:
 
     Keyboard (void);
     ~Keyboard (void);
@@ -34,6 +24,17 @@ class Keyboard
     bool getKeyPressed (Key k) const;
 
     bool getKeyToggled (Key k) const;
+
+    private:
+    struct Manager;
+    Manager *manager;
+
+    static const uint32_t MAX_KEY_COUNT = 16U;
+
+    using Keymap = std::map<Key, bool>;
+    Keymap pressedKeys, toggledKeys;
+
+    void toggleKey (Key k);
 };
 
 #endif
