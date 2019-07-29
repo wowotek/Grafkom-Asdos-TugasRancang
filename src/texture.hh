@@ -6,6 +6,21 @@
 
 typedef unsigned int TextureID;
 
-unsigned int LoadTexture(const char *, int, int);
+class Texture {
+    private:
+        TextureID texID;
+        std::string filename;
+        int width, height;
+
+    public:
+        Texture();
+        Texture(const char *);
+        Texture(const char *, int, int);
+
+        bool IsLoaded();
+        void LoadTexture();
+        TextureID GetTexture();
+};
+
 
 #endif

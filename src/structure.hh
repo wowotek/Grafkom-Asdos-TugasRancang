@@ -18,17 +18,17 @@ struct CubeFaceColor
 
 struct CubeTexture
 {
-    TextureID front;
-    TextureID left;
-    TextureID top;
-    TextureID right;
-    TextureID bottom;
-    TextureID back;
+    Texture front;
+    Texture left;
+    Texture top;
+    Texture right;
+    Texture bottom;
+    Texture back;
 };
 
-
-
-void Box(Coord3D, Coord3D, CubeFaceColor);
 void Box(Coord3D, Coord3D);
+void Box(Coord3D, Coord3D, CubeFaceColor *);
+void Box(Coord3D, Coord3D, CubeTexture *);
+void Box(Coord3D, Coord3D, CubeTexture *, CubeFaceColor *);
 
 #endif
