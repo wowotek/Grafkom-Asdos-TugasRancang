@@ -16,19 +16,40 @@ InitRenderer(Camera * initCamera, void (* cb)())
     controlCallback = cb;
 }
 
-void
-RenderDisplay()
+inline void
+DrawAxisLine()
 {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 
-    glMatrixMode(GL_MODELVIEW);     
+    // X LINE
+    glLineWidth(3);
+    glColor3f(1, 0, 0);
+    glBegin(GL_LINES);
+        glVertex3f(-100, 0, 0);
+        glVertex3f(100, 0, 0);
+    glEnd();
 
-    glLoadIdentity();
-    //glTranslatef(0, -2, -10);
-    cameraRendererP->Refresh();
+    // Y LINE
+    glLineWidth(3);
+    glColor3f(0, 1, 0);
+    glBegin(GL_LINES);
+        glVertex3f(0, -100, 0);
+        glVertex3f(0, 100, 0);
+    glEnd();
 
+    // Z LINE
+    glLineWidth(3);
+    glColor3f(0, 0, 1);
+    glBegin(GL_LINES);
+        glVertex3f(0, 0, -100);
+        glVertex3f(0, 0, 100);
+    glEnd();
+}
 
-    // floor
-    glColor3f(0.5, 0.5, 0.5);
+inline void
+DrawFloorGrid()
+{
+    // Floor Grid
+    glLineWidth(0.1);
+    glColor3f(0.2, 0.2, 0.2);
     for(int x = -100; x < 100; x++)
     {
         for(int z = -100; z < 100; z++)
@@ -41,8 +62,21 @@ RenderDisplay()
             glEnd();
         }
     }
+}
 
-    Box(Coord3D(1, 1, 1), Coord3D(2, 2, 2));
+void
+RenderDisplay()
+{
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 
+    glMatrixMode(GL_MODELVIEW);     
+
+    glLoadIdentity();
+    cameraRendererP->Refresh();
+    DrawFloorGrid();
+    DrawAxisLine();
+
+    Box(Coord3D(0, 0, 0), Coord3D(0.25, 2, 0.25));
+    Box(Coord3D(10, 0, 0), Coord3D(0.25, 2, 0.25));
 
 
     glMatrixMode(GL_PROJECTION);
@@ -56,7 +90,7 @@ BlitDisplay(int)
     (*controlCallback)();
 
     glutPostRedisplay();
-    glutTimerFunc(1000.0/60.0, BlitDisplay, 0);
+    glutTimerFunc(1000.0/120.0, BlitDisplay, 0);
 }
 
 void

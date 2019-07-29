@@ -53,6 +53,7 @@ main(int argc, char ** argv)
     );
 
     Init();
+    glutSetCursor(GLUT_CURSOR_FULL_CROSSHAIR);
 
     glutTimerFunc(16, BlitDisplay, 0);
 

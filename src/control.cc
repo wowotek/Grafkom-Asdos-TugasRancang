@@ -8,6 +8,7 @@
 Camera * cameraP;
 ControlKey * controlKeyP;
 MousePos * mousePosP;
+bool cursorCentered = false;
 
 void
 InitControl(Camera * initCamera, ControlKey * initControlKey, MousePos * initMousePos){
@@ -18,6 +19,11 @@ InitControl(Camera * initCamera, ControlKey * initControlKey, MousePos * initMou
     controlKeyP->ResetKeys();
 }
 
+void ToggleCursorCenter()
+{
+    cursorCentered = !cursorCentered;
+}
+
 void
 MouseButtonEventHandler(int, int, int, int)
 {
@@ -26,14 +32,21 @@ MouseButtonEventHandler(int, int, int, int)
 void
 MouseDragEventHandler(int posX, int posY)
 {
+    if(!cursorCentered) return;
+
     mousePosP->pX = posX;
     mousePosP->pY = posY;
     mousePosP->calculate();
+
+    cameraP->RotateYaw(mousePosP->cX);
+    cameraP->RotatePitch(mousePosP->cY);
 }
 
 void
 MouseMoveEventHandler(int posX, int posY)
 {
+    if(!cursorCentered) return;
+
     mousePosP->pX = posX;
     mousePosP->pY = posY;
     mousePosP->calculate();
@@ -57,11 +70,14 @@ KeyboardDownEventHandler(unsigned char key, int, int)
     if ((key == 'd' || key == 'D') && !controlKeyP->d.state)
         controlKeyP->d.PressKey();
     else
-    if ((key == ' '              ) && !controlKeyP->space.state)
-        controlKeyP->space.PressKey();
+    if ((key == 't' || key == 'T'))
+        ToggleCursorCenter();
     else
     if ( key == 'q' || key == 'Q')
         glutDestroyWindow(glutGetWindow());
+    else
+    if ((key == ' '              ) && !controlKeyP->space.state)
+        controlKeyP->space.PressKey();
 }
 
 void
@@ -124,5 +140,6 @@ ControlCallback()
     if(controlKeyP->lctrl.state) cameraP->Fly(-moveSpeed);
     if(controlKeyP->space.state) cameraP->Fly(moveSpeed);
 
+    if(!cursorCentered) return;
     glutWarpPointer((glutGet(GLUT_WINDOW_WIDTH) / 2), (glutGet(GLUT_WINDOW_HEIGHT) / 2));
 }

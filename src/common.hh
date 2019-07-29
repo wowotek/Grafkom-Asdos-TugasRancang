@@ -49,14 +49,14 @@ typedef Vec2<float> Coord2D;
 
 enum Keys
 {
-    NONE = 0,
-    W = 1,
-    A = 2,
-    S = 3,
-    D = 4,
-    LCTRL = 5,
-    LSHIFT = 6,
-    SPACE = 7
+    NONE,
+    W,  // Forward
+    A,  // Left
+    S,  // Back
+    D,  // Right
+    LCTRL,
+    LSHIFT,
+    SPACE
 };
 
 struct KeyPair
@@ -70,7 +70,9 @@ struct KeyPair
 
     void PressKey(){ this->state = true; }
     void ReleaseKey(){ this->state = false; }
-    void ToggleKey(){ this->state = !this->state; }
+    void ToggleKey(){
+        this->state = !this->state;
+    }
 };
 
 struct ControlKey
