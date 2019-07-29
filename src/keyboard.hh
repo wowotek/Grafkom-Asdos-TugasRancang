@@ -1,40 +1,54 @@
 #ifndef KEYBOARD_HH
 #define KEYBOARD_HH
 
-#include <map>
-#include <memory>
-
-struct Keyboard
+enum Keys
 {
-    enum Key: uint32_t
-    {
-        W = 1,
-        A = 2,
-        S = 3,
-        D = 4,
-        LEFT_SHIFT = 5,
-        LEFT_CONTROL = 6,
-        SPACE = 7
-    };
-
-    Keyboard (void);
-    ~Keyboard (void);
-
-    void setKeyPressed (Key k, bool b);
-    bool getKeyPressed (Key k) const;
-
-    bool getKeyToggled (Key k) const;
-
-    private:
-    struct Manager;
-    Manager *manager;
-
-    static const uint32_t MAX_KEY_COUNT = 16U;
-
-    using Keymap = std::map<Key, bool>;
-    Keymap pressedKeys, toggledKeys;
-
-    void toggleKey (Key k);
+    W = 0,
+    A = 1,
+    S = 2,
+    D = 3,
+    LCTRL = 4,
+    LSHIFT = 5,
+    SPACE = 6
 };
 
-#endif
+struct KeyPair
+{
+    Keys key;
+    bool state;
+
+    KeyPair(Keys k): key(k), state(false) {};
+    KeyPair(Keys k, bool s): key(k), state(s) {};
+
+
+    void
+    PressKey(KeyPair * keyPair)
+    {
+        keyPair->state = true;
+    }
+
+    void
+    ReleaseKey(KeyPair * keyPair)
+    {
+        keyPair->state = false;
+    }
+
+    void
+    ToggleKey(KeyPair * keyPair)
+    {
+        keyPair->state = !keyPair->state;
+    }
+};
+
+struct ControlKey
+{
+    KeyPair w;
+    KeyPair a;
+    KeyPair s;
+    KeyPair d;
+    KeyPair lctrl;
+    KeyPair lshift;
+    KeyPair space;
+}
+
+#endif // keyboard.hh

@@ -10,15 +10,13 @@
 #include "render.hh"
 
 CameraData camera;
-std::vector<unsigned char> keyPresses;
-std::vector<int> specKeyPresses;
 
 void
 Init()
 {
     camera.pos.y = -2;
     camera.pos.z = -10;
-    InitControl(&camera, &keyPresses, &specKeyPresses);
+    InitControl(&camera);
     InitRenderer(&camera, &ControlCallback);
 }
 

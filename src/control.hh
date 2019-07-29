@@ -1,5 +1,5 @@
 #ifndef CONTROL_HH
-#define CONTROL_HHH
+#define CONTROL_HH
 
 #include <vector>
 
