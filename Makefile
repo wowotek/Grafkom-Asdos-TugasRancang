@@ -2,7 +2,7 @@ CC		= g++
 CFLAGS	= -W -Wall
 CDEPS	= -lGL -lGLU -lglut
 
-EXEC	= koeboes.exe
+EXEC	= koeboes.app
 
 all: remdir makedir $(EXEC)
 
