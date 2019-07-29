@@ -2,8 +2,9 @@
 #define RENDER_HH
 
 #include "common.hh"
+#include "camera.hh"
 
-void InitRenderer(CameraData *, void (*)());
+void InitRenderer(Camera *, void (*)());
 void RenderDisplay();
 void BlitDisplay(int);
 void ReshapeDisplay(int, int);

@@ -9,14 +9,14 @@
 #include "control.hh"
 #include "render.hh"
 
-CameraData camera;
+Camera camera;
+ControlKey controlKey;
+MousePos mousePos;
 
 void
 Init()
 {
-    camera.pos.y = -2;
-    camera.pos.z = -10;
-    InitControl(&camera);
+    InitControl(&camera, &controlKey, &mousePos);
     InitRenderer(&camera, &ControlCallback);
 }
 

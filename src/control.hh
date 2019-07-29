@@ -4,8 +4,9 @@
 #include <vector>
 
 #include "common.hh"
+#include "camera.hh"
 
-void InitControl(CameraData *);
+void InitControl(Camera *, ControlKey *, MousePos *);
 
 void MouseButtonEventHandler(int, int, int, int);
 void MouseDragEventHandler(int, int);

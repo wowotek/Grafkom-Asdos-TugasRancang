@@ -6,11 +6,11 @@
 #include "structure.hh"
 
 
-CameraData * cameraRendererP;
+Camera * cameraRendererP;
 void (* controlCallback)();
 
 void
-InitRenderer(CameraData * initCamera, void (* cb)())
+InitRenderer(Camera * initCamera, void (* cb)())
 {
     cameraRendererP = initCamera;
     controlCallback = cb;
@@ -23,12 +23,9 @@ RenderDisplay()
     glMatrixMode(GL_MODELVIEW);     
 
     glLoadIdentity();
-    glTranslatef(
-        cameraRendererP->pos.x,
-        cameraRendererP->pos.y,
-        cameraRendererP->pos.z
-    );
-    glRotatef(0, 1, 1, 0.25);
+    //glTranslatef(0, -2, -10);
+    cameraRendererP->Refresh();
+
 
     // floor
     glColor3f(0.5, 0.5, 0.5);
@@ -47,6 +44,7 @@ RenderDisplay()
 
     Box(Coord3D(1, 1, 1), Coord3D(2, 2, 2));
 
+
     glMatrixMode(GL_PROJECTION);
 
     glutSwapBuffers();
@@ -56,8 +54,9 @@ void
 BlitDisplay(int)
 {
     (*controlCallback)();
+
     glutPostRedisplay();
-    glutTimerFunc(16, BlitDisplay, 0);
+    glutTimerFunc(1000.0/60.0, BlitDisplay, 0);
 }
 
 void
