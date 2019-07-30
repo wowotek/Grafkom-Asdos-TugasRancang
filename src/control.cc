@@ -121,7 +121,7 @@ KeyboardSpecialUpEventHandler(int key, int, int)
     }
 }
 
-#define MOVESPEED 0.005
+#define MOVESPEED 0.01
 #define RUNSPEED  0.2
 float moveSpeed = 0.2;
 

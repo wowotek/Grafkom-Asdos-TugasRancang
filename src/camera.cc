@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <iostream>
 #include <math.h>
 #include <GL/glut.h>
 
@@ -63,6 +63,7 @@ Camera::Move(float incr)
 
 	m_x = m_x + incr*lx;
 	m_y = m_y + incr*ly;
+	if(m_y <= 1.5) m_y = 1.5;
 	m_z = m_z + incr*lz;
 
 	Refresh();
