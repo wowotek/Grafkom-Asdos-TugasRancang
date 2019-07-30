@@ -76,34 +76,34 @@ RenderDisplay()
     DrawAxisLine();
 
     // Foundation / Raiser
-    Box(Coord3D(0, 0, 0), Coord3D(0.25, 2, 0.25));
-    Box(Coord3D(0, 0, 4), Coord3D(0.25, 2, 0.25));
-    Box(Coord3D(0, 0, 6), Coord3D(0.25, 2, 0.25));
-    Box(Coord3D(0, 0, 10), Coord3D(0.25, 2, 0.25));
-
-    Box(Coord3D(5, 0, 0), Coord3D(0.25, 2, 0.25));
-    Box(Coord3D(5, 0, 4), Coord3D(0.25, 2, 0.25));
-    Box(Coord3D(5, 0, 6), Coord3D(0.25, 2, 0.25));
-    Box(Coord3D(5, 0, 10), Coord3D(0.25, 2, 0.25));
-
-    Box(Coord3D(10, 0, 0), Coord3D(0.25, 2, 0.25));
-    Box(Coord3D(10, 0, 4), Coord3D(0.25, 2, 0.25));
-    Box(Coord3D(10, 0, 6), Coord3D(0.25, 2, 0.25));
-    Box(Coord3D(10, 0, 10), Coord3D(0.25, 2, 0.25));
-
-    Box(Coord3D(15, 0, 0), Coord3D(0.25, 2, 0.25));
-    Box(Coord3D(15, 0, 4), Coord3D(0.25, 2, 0.25));
-    Box(Coord3D(15, 0, 6), Coord3D(0.25, 2, 0.25));
-    Box(Coord3D(15, 0, 10), Coord3D(0.25, 2, 0.25));
-
+    for(float i=0; i<20; i+= 5){
+        Box(Coord3D(0.05+i, 0.5, 0),   Coord3D(0.15, 1.5, 0.15));
+            Box(Coord3D(-0.125+i, 0, -0.125),   Coord3D(0.4, 0.5, 0.4));
+        Box(Coord3D(0.05+i, 0.5, 4.1), Coord3D(0.15, 1.5, 0.15));
+            Box(Coord3D(-0.125+i, 0, 3.975),   Coord3D(0.4, 0.5, 0.4));
+        Box(Coord3D(0.05+i, 0.5, 6),   Coord3D(0.15, 1.5, 0.15));
+            Box(Coord3D(-0.125+i, 0, 5.875),   Coord3D(0.4, 0.5, 0.4));
+        Box(Coord3D(0.05+i, 0.5, 10.1),Coord3D(0.15, 1.5, 0.15));
+            Box(Coord3D(-0.125+i, 0, 9.975),   Coord3D(0.4, 0.5, 0.4));
+    }
     // Floor Base
     Box(Coord3D(0, 2, 0), Coord3D(15.25, 0.1, 10.25));
 
     // Left
     Box(Coord3D(0, 2.1, 0), Coord3D(15.25, 3.5, 0.1));
 
-    // Left
+    // Right
     Box(Coord3D(0, 2.1, 10.15), Coord3D(15.25, 3.5, 0.1));
+
+    // Back
+    Box(Coord3D(15.15, 2.1, 0.1), Coord3D(0.1, 3.5, 10.05));
+
+    // Front Left
+    Box(Coord3D(0, 2.1, 0.1), Coord3D(0.1, 3.5, 4.15));
+    // Front Right
+    Box(Coord3D(0, 2.1, 6), Coord3D(0.1, 3.5, 4.15));
+    // Front Top
+    Box(Coord3D(0, 4.1, 4.25), Coord3D(0.1, 1.5, 1.75));
 
     glMatrixMode(GL_PROJECTION);
 
@@ -131,7 +131,7 @@ ReshapeDisplay(int newHeight, int newWidth)
     glLoadIdentity();
 
     gluPerspective(
-        45.0f, (float)(newHeight) / (float)(newWidth), 0.0005f, 1000.0f
+        45.0f, (float)(newHeight) / (float)(newWidth), 0.01f, 1000.0f
     );
 
     glMatrixMode(GL_MODELVIEW);

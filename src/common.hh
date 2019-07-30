@@ -30,7 +30,7 @@ struct Vec3
 typedef Vec3<float> Vec3f;
 typedef Vec3<float> Color3f;
 typedef Vec3<float> Coord3D;
-
+typedef Vec3<float> Size3D;
 
 template <typename T>
 struct Vec2
