@@ -4,7 +4,7 @@
 #include "common.hh"
 #include "camera.hh"
 
-void InitRenderer(Camera *, void (*)());
+void InitRenderer(Camera *, unsigned int *, void (*)());
 void RenderDisplay();
 void BlitDisplay(int);
 void ReshapeDisplay(int, int);

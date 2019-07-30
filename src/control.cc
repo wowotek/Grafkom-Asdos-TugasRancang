@@ -104,7 +104,7 @@ KeyboardSpecialDownEventHandler(int key, int, int)
 {
     if(!controlKeyP->IsSpecKeyPressed()){
         if (key == 112 && !controlKeyP->lshift.state) 
-            controlKeyP->lshift.PressKey(); else
+            controlKeyP->lshift.PressKey();
         if (key == 114 && !controlKeyP->lctrl.state)
             controlKeyP->lctrl.PressKey();
     }
@@ -115,7 +115,7 @@ KeyboardSpecialUpEventHandler(int key, int, int)
 {
     if(controlKeyP->IsSpecKeyPressed()){
         if (key == 112 && controlKeyP->lshift.state)
-            controlKeyP->lshift.ReleaseKey(); else
+            controlKeyP->lshift.ReleaseKey();
         if (key == 114 && controlKeyP->lctrl.state)
             controlKeyP->lctrl.ReleaseKey();
     }

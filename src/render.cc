@@ -4,17 +4,19 @@
 
 #include "render.hh"
 #include "structure.hh"
-
+#include "furniture.hh"
 
 Camera * cameraRendererP;
 void (* controlCallback)();
-GLuint texture[2];
+GLuint * texs;
 
 void
-InitRenderer(Camera * initCamera, void (* cb)())
+InitRenderer(Camera * initCamera, unsigned int * initTexture, void (* cb)())
 {
-    LoadTexture(texture[0], "data/textures/grass1.bmp", 640, 640);
-
+    texs = initTexture;
+    Furniture::InitFurnituresTexture(texs);
+    Structures::InitStructureTexture(texs);
+    
     cameraRendererP = initCamera;
     controlCallback = cb;
 }
@@ -52,16 +54,17 @@ DrawFloorGrid()
 {
     // Floor Grid
     glLineWidth(0.1);
-    glColor3f(0.2, 0.2, 0.2);
+    glColor3f(1, 1, 1);
     for(int x = -100; x < 100; x++)
     {
         for(int z = -100; z < 100; z++)
         {
-            glBegin(GL_LINE_LOOP);
-                glVertex3f(0+x, 0, 0+z);
-                glVertex3f(0+x, 0, 1+z);
-                glVertex3f(1+x, 0, 1+z);
-                glVertex3f(1+x, 0, 0+z);
+            glBindTexture(GL_TEXTURE_2D, texs[0]);
+            glBegin(GL_QUADS);
+                glTexCoord2f(0, 0); glVertex3f(0+x, 0, 0+z);
+                glTexCoord2f(0, 1); glVertex3f(0+x, 0, 1+z);
+                glTexCoord2f(1, 1); glVertex3f(1+x, 0, 1+z);
+                glTexCoord2f(1, 0); glVertex3f(1+x, 0, 0+z);
             glEnd();
         }
     }
@@ -75,41 +78,16 @@ RenderDisplay()
 
     glLoadIdentity();
     cameraRendererP->Refresh();
+    glPushMatrix();
     DrawFloorGrid();
     DrawAxisLine();
+    glPopMatrix();
 
-    // Foundation / Raiser
-    for(float i=0; i<20; i+= 5){
-        Box(Coord3D(0.05+i, 0.5, 0),   Coord3D(0.15, 1.5, 0.15));
-            Box(Coord3D(-0.125+i, 0, -0.125),   Coord3D(0.4, 0.5, 0.4));
-        Box(Coord3D(0.05+i, 0.5, 4.1), Coord3D(0.15, 1.5, 0.15));
-            Box(Coord3D(-0.125+i, 0, 3.975),   Coord3D(0.4, 0.5, 0.4));
-        Box(Coord3D(0.05+i, 0.5, 6),   Coord3D(0.15, 1.5, 0.15));
-            Box(Coord3D(-0.125+i, 0, 5.875),   Coord3D(0.4, 0.5, 0.4));
-        Box(Coord3D(0.05+i, 0.5, 10.1),Coord3D(0.15, 1.5, 0.15));
-            Box(Coord3D(-0.125+i, 0, 9.975),   Coord3D(0.4, 0.5, 0.4));
-    }
-    // Floor Base
-    Box(Coord3D(0, 2, 0), Coord3D(15.25, 0.1, 10.25));
-
-    // Left
-    Box(Coord3D(0, 2.1, 0), Coord3D(15.25, 3.5, 0.1));
-
-    // Right
-    Box(Coord3D(0, 2.1, 10.15), Coord3D(15.25, 3.5, 0.1));
-
-    // Back
-    Box(Coord3D(15.15, 2.1, 0.1), Coord3D(0.1, 3.5, 10.05));
-
-    // Front Left
-    Box(Coord3D(0, 2.1, 0.1), Coord3D(0.1, 3.5, 4.15));
-    // Front Right
-    Box(Coord3D(0, 2.1, 6), Coord3D(0.1, 3.5, 4.15));
-    // Front Top
-    Box(Coord3D(0, 4.1, 4.25), Coord3D(0.1, 1.5, 1.75));
+    glPushMatrix();
+    Structures::DrawHouse();
+    glPopMatrix();
 
     glMatrixMode(GL_PROJECTION);
-
     glutSwapBuffers();
 }
 

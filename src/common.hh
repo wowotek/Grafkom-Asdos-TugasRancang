@@ -1,6 +1,7 @@
 #ifndef COMMON_HH
 #define COMMON_HH
 
+#include <GL/glut.h>
 
 // TOOLS
 #define up3(vec3) \

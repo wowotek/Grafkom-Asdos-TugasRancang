@@ -1,128 +1,78 @@
 #include "structure.hh"
 
-GLenum RENDER_MODE = GL_QUADS;
+unsigned int * sTexs;
 
 void
-Box(Coord3D pos, Coord3D size)
+Structures::InitStructureTexture(unsigned int * initTex)
 {
-    CubeFaceColor cubeFaceColor;
-    float sx = size.x;
-    float sy = size.y;
-    float sz = size.z;
-
-    // Front
-    glColor3f(up3(cubeFaceColor.front));
-    glBegin(RENDER_MODE);
-        glVertex3f(up3add(pos, 0, sy, sz));
-        glVertex3f(up3add(pos, sx, sy, sz));
-        glVertex3f(up3add(pos, sx, 0, sz));
-        glVertex3f(up3add(pos, 0, 0, sz));
-    glEnd();
-
-    // Kiri
-    glColor3f(up3(cubeFaceColor.left));
-    glBegin(RENDER_MODE);
-        glVertex3f(up3add(pos, 0, 0, 0));
-        glVertex3f(up3add(pos, 0, 0, sz));
-        glVertex3f(up3add(pos, 0, sy, sz));
-        glVertex3f(up3add(pos, 0, sy, 0));
-    glEnd();
-
-    // Atas
-    glColor3f(up3(cubeFaceColor.top));
-    glBegin(RENDER_MODE);
-        glVertex3f(up3add(pos, 0, sy, 0));
-        glVertex3f(up3add(pos, sx, sy, 0));
-        glVertex3f(up3add(pos, sx, sy, sz));
-        glVertex3f(up3add(pos, 0, sy, sz));
-    glEnd();
-
-    // Kanan
-    glColor3f(up3(cubeFaceColor.right));
-    glBegin(RENDER_MODE);
-        glVertex3f(up3add(pos, sx, sy, 0));
-        glVertex3f(up3add(pos, sx, sy, sz));
-        glVertex3f(up3add(pos, sx, 0, sz));
-        glVertex3f(up3add(pos, sx, 0, 0));
-    glEnd();
-
-    // Bawah
-    glColor3f(up3(cubeFaceColor.bottom));
-    glBegin(RENDER_MODE);
-        glVertex3f(up3add(pos, sx, 0, 0));
-        glVertex3f(up3add(pos, 0, 0, 0));
-        glVertex3f(up3add(pos, 0, 0, sz));
-        glVertex3f(up3add(pos, sx, 0, sz));
-    glEnd();
-
-    // Belakang
-    glColor3f(up3(cubeFaceColor.back));
-    glBegin(RENDER_MODE);
-        glVertex3f(up3add(pos, 0, 0, 0));
-        glVertex3f(up3add(pos, sx, 0, 0));
-        glVertex3f(up3add(pos, sx, sy, 0));
-        glVertex3f(up3add(pos, 0, sy, 0));
-    glEnd();
+    sTexs = initTex;
 }
 
 void
-Box(Coord3D pos, Coord3D size, CubeFaceColor * cubeFaceColor)
+Structures::DrawHouse()
 {
-    float sx = size.x;
-    float sy = size.y;
-    float sz = size.z;
+    // Foundation / Raiser
+    glColor3f(1, 1, 1);
+    for(float i=0; i<20; i+= 5){
+        Box(Coord3D(0.05+i, 0.5, 0),   Coord3D(0.15, 1.5, 0.15), sTexs[1]);
+            Box(Coord3D(-0.07+i, 0, -0.125),   Coord3D(0.4, 0.5, 0.4), sTexs[2]);
+        Box(Coord3D(0.05+i, 0.5, 4.1), Coord3D(0.15, 1.5, 0.15), sTexs[1]);
+            Box(Coord3D(-0.07+i, 0, 3.975),   Coord3D(0.4, 0.5, 0.4), sTexs[2]);
+        Box(Coord3D(0.05+i, 0.5, 6),   Coord3D(0.15, 1.5, 0.15), sTexs[1]);
+            Box(Coord3D(-0.07+i, 0, 5.875),   Coord3D(0.4, 0.5, 0.4), sTexs[2]);
+        Box(Coord3D(0.05+i, 0.5, 10.1),Coord3D(0.15, 1.5, 0.15), sTexs[1]);
+            Box(Coord3D(-0.07+i, 0, 9.975),   Coord3D(0.4, 0.5, 0.4), sTexs[2]);
+    }
+    // Floor Base
+    glColor3ub(112, 84, 17);
+    Box(Coord3D(0, 2, 0), Coord3D(15.25, 0.1, 10.25), sTexs[1]);
 
-    // Depan
-    glColor3f(up3(cubeFaceColor->front));
-    glBegin(RENDER_MODE);
-        glVertex3f(up3add(pos, 0, 0, 0));
-        glVertex3f(up3add(pos, sx, 0, 0));
-        glVertex3f(up3add(pos, sx, sy, 0));
-        glVertex3f(up3add(pos, 0, sy, 0));
-    glEnd();
+    // Left
+    glColor3ub(112, 84, 17);
+    Box(Coord3D(0, 2.1, 0), Coord3D(3.5, 3.5, 0.1), sTexs[3]);
+    Box(Coord3D(6.5, 2.1, 0), Coord3D(8.75, 3.5, 0.1), sTexs[3]);
+    Box(Coord3D(0, 2.1, 0), Coord3D(3.5, 3.5, 0.1), sTexs[3]);
+    // --- Window
+    Box(Coord3D(3.5, 4.6, 0), Coord3D(3, 1, 0.1), sTexs[1]);
+    Box(Coord3D(3.5, 2.1, 0), Coord3D(3, 1, 0.1), sTexs[1]);
+    Box(Coord3D(4.85, 3.1, 0), Coord3D(0.25, 1.5, 0.1), sTexs[1]);
 
-    // Kiri
-    glColor3f(up3(cubeFaceColor->left));
-    glBegin(RENDER_MODE);
-        glVertex3f(up3add(pos, 0, 0, 0));
-        glVertex3f(up3add(pos, 0, 0, sz));
-        glVertex3f(up3add(pos, 0, sy, sz));
-        glVertex3f(up3add(pos, 0, sy, 0));
-    glEnd();
+    // Right
+    glColor3ub(112, 84, 17);
+    Box(Coord3D(0, 2.1, 10.15), Coord3D(3.5, 3.5, 0.1), sTexs[3]);
+    Box(Coord3D(6.5, 2.1, 10.15), Coord3D(8.75, 3.5, 0.1), sTexs[3]);
+    Box(Coord3D(0, 2.1, 10.15), Coord3D(3.5, 3.5, 0.1), sTexs[3]);
+    // --- Window
+    Box(Coord3D(3.5, 4.6, 10.15), Coord3D(3, 1, 0.1), sTexs[1]);
+    Box(Coord3D(3.5, 2.1, 10.15), Coord3D(3, 1, 0.1), sTexs[1]);
+    Box(Coord3D(4.85, 3.1, 10.15), Coord3D(0.25, 1.5, 0.1), sTexs[1]);
 
-    // Atas
-    glColor3f(up3(cubeFaceColor->top));
-    glBegin(RENDER_MODE);
-        glVertex3f(up3add(pos, 0, sy, 0));
-        glVertex3f(up3add(pos, sx, sy, 0));
-        glVertex3f(up3add(pos, sx, sy, sz));
-        glVertex3f(up3add(pos, 0, sy, sz));
-    glEnd();
+    // Back
+    glColor3ub(112, 84, 17);
+    Box(Coord3D(15.15, 2.1, 0.1), Coord3D(0.1, 3.5, 10.05), sTexs[3]);
 
-    // Kanan
-    glColor3f(up3(cubeFaceColor->right));
-    glBegin(RENDER_MODE);
-        glVertex3f(up3add(pos, sx, sy, 0));
-        glVertex3f(up3add(pos, sx, sy, sz));
-        glVertex3f(up3add(pos, sx, 0, sz));
-        glVertex3f(up3add(pos, sx, 0, 0));
-    glEnd();
+    // Front Left
+    glColor3ub(112, 84, 17);
+    Box(Coord3D(0, 2.1, 0.1), Coord3D(0.1, 2.5, 4.15), sTexs[3]);
+    Box(Coord3D(0, 5, 0.1), Coord3D(0.1, 0.6, 4.15), sTexs[3]);
+    Box(Coord3D(0, 4.6, 0.1), Coord3D(0.1, 0.4, 1), sTexs[3]);
+    Box(Coord3D(0, 4.6, 3), Coord3D(0.1, 0.4, 1.25), sTexs[3]);
 
-    // Bawah
-    glColor3f(up3(cubeFaceColor->bottom));
-    glBegin(RENDER_MODE);
-        glVertex3f(up3add(pos, sx, 0, 0));
-        glVertex3f(up3add(pos, 0, 0, 0));
-        glVertex3f(up3add(pos, 0, 0, sz));
-        glVertex3f(up3add(pos, sx, 0, sz));
-    glEnd();
+    // Front Right
+    glColor3ub(112, 84, 17);
+    Box(Coord3D(0, 2.1, 6), Coord3D(0.1, 2.5, 4.15), sTexs[3]);
+    Box(Coord3D(0, 5, 6), Coord3D(0.1, 0.6, 4.15), sTexs[3]);
+    Box(Coord3D(0, 4.6, 6), Coord3D(0.1, 0.4, 1), sTexs[3]);
+    Box(Coord3D(0, 4.6, 8.9), Coord3D(0.1, 0.4, 1.25), sTexs[3]);
 
-    // Belakang
-    glColor3f(up3(cubeFaceColor->back));
-    glBegin(RENDER_MODE);
-        glVertex3f(up3add(pos, 0, sy, sz));
-        glVertex3f(up3add(pos, sx, sy, sz));
-        glVertex3f(up3add(pos, sx, 0, sz));
-        glVertex3f(up3add(pos, 0, 0, sz));
-    glEnd();
+    // Front Top
+    glColor3ub(112, 84, 17);
+    Box(Coord3D(0, 4.1, 4.25), Coord3D(0.1, 1.5, 1.75), sTexs[3]);
+
+    // Ruang Tengah
+    glColor3ub(112, 84, 17);
+    Box(Coord3D(9, 2.1, 0.1), Coord3D(0.1, 1.25, 5), sTexs[3]);
+    Box(Coord3D(9, 2.1, 5.1), Coord3D(0.1, 3.5, 0.1), sTexs[3]);
+    Box(Coord3D(10.6, 2.1, 5.1), Coord3D(0.1, 3.5, 0.1), sTexs[3]);
+    Box(Coord3D(10.7, 2.1, 5.1), Coord3D(4.45, 1.25, 0.1), sTexs[3]);
 }
