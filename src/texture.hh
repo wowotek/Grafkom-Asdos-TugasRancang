@@ -2,25 +2,39 @@
 #define TEXTURE_HH
 
 #include <iostream>
+#include <vector>
+#include <fstream>
 #include <GL/glut.h>
 
 typedef unsigned int TextureID;
 
-class Texture {
-    private:
-        TextureID texID;
-        std::string filename;
-        int width, height;
+struct Bitmap{
+    unsigned char * data;
+    int w, h;
 
-    public:
-        Texture();
-        Texture(const char *);
-        Texture(const char *, int, int);
+    void loadBMP(const char * filename){
+        FILE* f = fopen(filename, "rb");
+        unsigned char info[54];
+        fread(info, sizeof(unsigned char), 54, f);
 
-        bool IsLoaded();
-        void LoadTexture();
-        TextureID GetTexture();
+        int width = *(int*)&info[18];
+        int height = *(int*)&info[22];
+
+        int size = 3 * width * height;
+        this->w = width;
+        this->h = height;
+        fread(this->data, sizeof(unsigned char), size, f);
+        fclose(f);
+
+        for(int i = 0; i < size; i += 3)
+        {
+            unsigned char tmp = this->data[i];
+            this->data[i] = this->data[i+2];
+            this->data[i+2] = tmp;
+        }
+    }
 };
 
+void LoadTexture(TextureID, const char *);
 
 #endif

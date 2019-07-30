@@ -1,5 +1,5 @@
 CC		= g++
-CFLAGS	= -W -Wall
+CFLAGS	= -W -Wall -Ilib
 CDEPS	= -lGL -lGLU -lglut
 
 EXEC	= koeboes.app
@@ -24,6 +24,7 @@ cpdatadir:
 run:
 	@cd ./build/bin/ && ./$(EXEC)
 
+# Project Compile
 control.o: src/control.cc src/control.hh
 	@echo "Compiling control.cc <- control.hh"
 	@$(CC) $(CFLAGS) -c src/control.cc -o build/o/control.o

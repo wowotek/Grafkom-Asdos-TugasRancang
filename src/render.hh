@@ -2,6 +2,7 @@
 #define RENDER_HH
 
 #include "common.hh"
+#include "texture.hh"
 #include "camera.hh"
 
 void InitRenderer(Camera *, void (*)());
