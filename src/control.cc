@@ -8,7 +8,7 @@
 Camera * cameraP;
 ControlKey * controlKeyP;
 MousePos * mousePosP;
-bool cursorCentered = false;
+bool cursorCentered = true;
 
 void
 InitControl(Camera * initCamera, ControlKey * initControlKey, MousePos * initMousePos){

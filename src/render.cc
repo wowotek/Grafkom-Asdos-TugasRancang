@@ -75,9 +75,35 @@ RenderDisplay()
     DrawFloorGrid();
     DrawAxisLine();
 
+    // Foundation / Raiser
     Box(Coord3D(0, 0, 0), Coord3D(0.25, 2, 0.25));
-    Box(Coord3D(10, 0, 0), Coord3D(0.25, 2, 0.25));
+    Box(Coord3D(0, 0, 4), Coord3D(0.25, 2, 0.25));
+    Box(Coord3D(0, 0, 6), Coord3D(0.25, 2, 0.25));
+    Box(Coord3D(0, 0, 10), Coord3D(0.25, 2, 0.25));
 
+    Box(Coord3D(5, 0, 0), Coord3D(0.25, 2, 0.25));
+    Box(Coord3D(5, 0, 4), Coord3D(0.25, 2, 0.25));
+    Box(Coord3D(5, 0, 6), Coord3D(0.25, 2, 0.25));
+    Box(Coord3D(5, 0, 10), Coord3D(0.25, 2, 0.25));
+
+    Box(Coord3D(10, 0, 0), Coord3D(0.25, 2, 0.25));
+    Box(Coord3D(10, 0, 4), Coord3D(0.25, 2, 0.25));
+    Box(Coord3D(10, 0, 6), Coord3D(0.25, 2, 0.25));
+    Box(Coord3D(10, 0, 10), Coord3D(0.25, 2, 0.25));
+
+    Box(Coord3D(15, 0, 0), Coord3D(0.25, 2, 0.25));
+    Box(Coord3D(15, 0, 4), Coord3D(0.25, 2, 0.25));
+    Box(Coord3D(15, 0, 6), Coord3D(0.25, 2, 0.25));
+    Box(Coord3D(15, 0, 10), Coord3D(0.25, 2, 0.25));
+
+    // Floor Base
+    Box(Coord3D(0, 2, 0), Coord3D(15.25, 0.1, 10.25));
+
+    // Left
+    Box(Coord3D(0, 2.1, 0), Coord3D(15.25, 3.5, 0.1));
+
+    // Left
+    Box(Coord3D(0, 2.1, 10.15), Coord3D(15.25, 3.5, 0.1));
 
     glMatrixMode(GL_PROJECTION);
 

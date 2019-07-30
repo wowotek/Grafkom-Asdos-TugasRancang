@@ -82,6 +82,7 @@ void
 Camera::Fly(float incr)
 {
 	m_y = m_y + incr;
+	if(m_y <= 1.5) m_y = 1.5;
 
 	Refresh();
 }

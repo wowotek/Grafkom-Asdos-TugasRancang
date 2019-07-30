@@ -25,10 +25,13 @@ int
 main(int argc, char ** argv)
 {
     glutInit(&argc, argv);
+    glutSetOption(GLUT_MULTISAMPLE, 8);
+    glHint(GL_MULTISAMPLE_FILTER_HINT_NV, GL_NICEST);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
-    glutInitWindowSize(1600, 900);
+    glutInitWindowSize(1366, 768);
     glutInitWindowPosition(2100, 100);
     glutCreateWindow("TR-GRAFKOM-ASDOS");
+    glutFullScreen();
 
     // Mouse
     glutMouseFunc(MouseButtonEventHandler);
@@ -54,7 +57,7 @@ main(int argc, char ** argv)
     );
 
     Init();
-    glutSetCursor(GLUT_CURSOR_FULL_CROSSHAIR);
+    glutSetCursor(GLUT_CURSOR_NONE);
 
     glutTimerFunc(16, BlitDisplay, 0);
 
@@ -64,14 +67,9 @@ main(int argc, char ** argv)
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_BLEND);
 
-    glutSetOption(GLUT_MULTISAMPLE, 16);
-    glHint(GL_MULTISAMPLE_FILTER_HINT_NV, GL_NICEST);
-    glEnable(GL_MULTISAMPLE);
-
     glEnable(GL_TEXTURE_2D);
 
     glShadeModel(GL_SMOOTH); 
-
     glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST); 
 
     glEnable(GL_DEPTH_TEST);   
