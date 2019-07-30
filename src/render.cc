@@ -8,10 +8,13 @@
 
 Camera * cameraRendererP;
 void (* controlCallback)();
+GLuint texture[2];
 
 void
 InitRenderer(Camera * initCamera, void (* cb)())
 {
+    LoadTexture(texture[0], "data/textures/grass1.bmp", 640, 640);
+
     cameraRendererP = initCamera;
     controlCallback = cb;
 }

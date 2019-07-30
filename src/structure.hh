@@ -16,19 +16,7 @@ struct CubeFaceColor
     Color3f back    = Color3f(1, 1, 1);
 };
 
-struct CubeTexture
-{
-    Texture * front;
-    Texture * left;
-    Texture * top;
-    Texture * right;
-    Texture * bottom;
-    Texture * back;
-};
-
 void Box(Coord3D, Coord3D);
 void Box(Coord3D, Coord3D, CubeFaceColor *);
-void Box(Coord3D, Coord3D, CubeTexture *);
-void Box(Coord3D, Coord3D, CubeTexture *, CubeFaceColor *);
 
 #endif
