@@ -135,7 +135,7 @@ Box(Coord3D pos, Coord3D size, CubeTexture * cubeTexture)
     float sz = size.z;
 
     // Depan
-    glBindTexture(GL_TEXTURE_2D, cubeTexture->front.GetTexture());
+    glBindTexture(GL_TEXTURE_2D, cubeTexture->front->GetTexture());
     glBegin(RENDER_MODE);
         glTexCoord2f(1.0, 0.0); glVertex3f(up3add(pos, 0, 0, 0));
         glTexCoord2f(1.0, 1.0); glVertex3f(up3add(pos, sx, 0, 0));
@@ -144,7 +144,7 @@ Box(Coord3D pos, Coord3D size, CubeTexture * cubeTexture)
     glEnd();
 
     // Kiri
-    glBindTexture(GL_TEXTURE_2D, cubeTexture->left.GetTexture());
+    glBindTexture(GL_TEXTURE_2D, cubeTexture->left->GetTexture());
     glBegin(RENDER_MODE);
         glTexCoord2f(1.0, 0.0); glVertex3f(up3add(pos, 0, 0, 0));
         glTexCoord2f(1.0, 1.0); glVertex3f(up3add(pos, 0, 0, sz));
@@ -153,7 +153,7 @@ Box(Coord3D pos, Coord3D size, CubeTexture * cubeTexture)
     glEnd();
 
     // Atas
-    glBindTexture(GL_TEXTURE_2D, cubeTexture->top.GetTexture());
+    glBindTexture(GL_TEXTURE_2D, cubeTexture->top->GetTexture());
     glBegin(RENDER_MODE);
         glTexCoord2f(1.0, 0.0); glVertex3f(up3add(pos, 0, sy, 0));
         glTexCoord2f(1.0, 1.0); glVertex3f(up3add(pos, sx, sy, 0));
@@ -162,7 +162,7 @@ Box(Coord3D pos, Coord3D size, CubeTexture * cubeTexture)
     glEnd();
 
     // Kanan
-    glBindTexture(GL_TEXTURE_2D, cubeTexture->right.GetTexture());
+    glBindTexture(GL_TEXTURE_2D, cubeTexture->right->GetTexture());
     glBegin(RENDER_MODE);
         glTexCoord2f(1.0, 0.0); glVertex3f(up3add(pos, sx, sy, 0));
         glTexCoord2f(1.0, 1.0); glVertex3f(up3add(pos, sx, sy, sz));
@@ -171,7 +171,7 @@ Box(Coord3D pos, Coord3D size, CubeTexture * cubeTexture)
     glEnd();
 
     // Bawah
-    glBindTexture(GL_TEXTURE_2D, cubeTexture->bottom.GetTexture());
+    glBindTexture(GL_TEXTURE_2D, cubeTexture->bottom->GetTexture());
     glBegin(RENDER_MODE);
         glTexCoord2f(1.0, 0.0); glVertex3f(up3add(pos, sx, 0, 0));
         glTexCoord2f(1.0, 1.0); glVertex3f(up3add(pos, 0, 0, 0));
@@ -180,7 +180,7 @@ Box(Coord3D pos, Coord3D size, CubeTexture * cubeTexture)
     glEnd();
 
     // Belakang
-    glBindTexture(GL_TEXTURE_2D, cubeTexture->back.GetTexture());
+    glBindTexture(GL_TEXTURE_2D, cubeTexture->back->GetTexture());
     glBegin(RENDER_MODE);
         glTexCoord2f(1.0, 0.0); glVertex3f(up3add(pos, 0, sy, sz));
         glTexCoord2f(1.0, 1.0); glVertex3f(up3add(pos, sx, sy, sz));
@@ -197,7 +197,7 @@ Box(Coord3D pos, Coord3D size, CubeTexture * cubeTexture, CubeFaceColor * cubeFa
     float sz = size.z;
     
     // Depan
-    glBindTexture(GL_TEXTURE_2D, cubeTexture->front.GetTexture());
+    glBindTexture(GL_TEXTURE_2D, cubeTexture->front->GetTexture());
     glColor3f(up3(cubeFaceColor->front));
     glBegin(RENDER_MODE);
         glTexCoord2f(1.0, 0.0); glVertex3f(up3add(pos, 0, 0, 0));
@@ -207,7 +207,7 @@ Box(Coord3D pos, Coord3D size, CubeTexture * cubeTexture, CubeFaceColor * cubeFa
     glEnd();
 
     // Kiri
-    glBindTexture(GL_TEXTURE_2D, cubeTexture->left.GetTexture());
+    glBindTexture(GL_TEXTURE_2D, cubeTexture->left->GetTexture());
     glColor3f(up3(cubeFaceColor->left));
     glBegin(RENDER_MODE);
         glTexCoord2f(1.0, 0.0); glVertex3f(up3add(pos, 0, 0, 0));
@@ -217,7 +217,7 @@ Box(Coord3D pos, Coord3D size, CubeTexture * cubeTexture, CubeFaceColor * cubeFa
     glEnd();
 
     // Atas
-    glBindTexture(GL_TEXTURE_2D, cubeTexture->top.GetTexture());
+    glBindTexture(GL_TEXTURE_2D, cubeTexture->top->GetTexture());
     glColor3f(up3(cubeFaceColor->top));
     glBegin(RENDER_MODE);
         glTexCoord2f(1.0, 0.0); glVertex3f(up3add(pos, 0, sy, 0));
@@ -227,7 +227,7 @@ Box(Coord3D pos, Coord3D size, CubeTexture * cubeTexture, CubeFaceColor * cubeFa
     glEnd();
 
     // Kanan
-    glBindTexture(GL_TEXTURE_2D, cubeTexture->right.GetTexture());
+    glBindTexture(GL_TEXTURE_2D, cubeTexture->right->GetTexture());
     glColor3f(up3(cubeFaceColor->right));
     glBegin(RENDER_MODE);
         glTexCoord2f(1.0, 0.0); glVertex3f(up3add(pos, sx, sy, 0));
@@ -237,7 +237,7 @@ Box(Coord3D pos, Coord3D size, CubeTexture * cubeTexture, CubeFaceColor * cubeFa
     glEnd();
 
     // Bawah
-    glBindTexture(GL_TEXTURE_2D, cubeTexture->bottom.GetTexture());
+    glBindTexture(GL_TEXTURE_2D, cubeTexture->bottom->GetTexture());
     glColor3f(up3(cubeFaceColor->bottom));
     glBegin(RENDER_MODE);
         glTexCoord2f(1.0, 0.0); glVertex3f(up3add(pos, sx, 0, 0));
@@ -247,7 +247,7 @@ Box(Coord3D pos, Coord3D size, CubeTexture * cubeTexture, CubeFaceColor * cubeFa
     glEnd();
 
     // Belakang
-    glBindTexture(GL_TEXTURE_2D, cubeTexture->back.GetTexture());
+    glBindTexture(GL_TEXTURE_2D, cubeTexture->back->GetTexture());
     glColor3f(up3(cubeFaceColor->back));
     glBegin(RENDER_MODE);
         glTexCoord2f(1.0, 0.0); glVertex3f(up3add(pos, 0, sy, sz));

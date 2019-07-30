@@ -1,5 +1,5 @@
 #include <iostream>
-#include <vector>
+#include <map>
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <GL/glut.h>
@@ -8,6 +8,7 @@
 #include "common.hh"
 #include "control.hh"
 #include "render.hh"
+#include "texture.hh"
 
 Camera camera;
 ControlKey controlKey;

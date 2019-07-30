@@ -41,7 +41,7 @@ Texture::LoadTexture(){
     fclose(file);
     free(file);
 
-    for(int i = 0; i < this->width * this->height ; ++i){
+    for(int i = 0; i < this->width * this->height; ++i){
         int index = i*3;
         unsigned char B, R;
         B = data[index];

@@ -105,7 +105,7 @@ ReshapeDisplay(int newHeight, int newWidth)
     glLoadIdentity();
 
     gluPerspective(
-        45.0f, (float)(newHeight) / (float)(newWidth), 1.0f, 1000.0f
+        45.0f, (float)(newHeight) / (float)(newWidth), 0.0001f, 1000.0f
     );
 
     glMatrixMode(GL_MODELVIEW);
