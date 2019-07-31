@@ -9,7 +9,7 @@
 
 namespace Structures{
     void InitStructureTexture(unsigned int *);
-    void DrawHouse();
+    void DrawHouse(Coord3D);
 }
 
 #endif

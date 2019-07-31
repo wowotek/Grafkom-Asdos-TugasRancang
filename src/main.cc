@@ -17,10 +17,10 @@ MousePos mousePos;
 unsigned int * materialTexture;
 
 void
-Init()
+InitTextures()
 {
-    materialTexture = new unsigned int[8];
-    glGenTextures(8, materialTexture);
+    materialTexture = new unsigned int[11];
+    glGenTextures(11, materialTexture);
     LoadTexture(materialTexture[0], "data/textures/grass1.bmp", 1024, 1024);
     LoadTexture(materialTexture[1], "data/textures/hardwood.bmp", 1024, 1024);
     LoadTexture(materialTexture[2], "data/textures/concrete.bmp", 1600, 1600);
@@ -29,7 +29,15 @@ Init()
     LoadTexture(materialTexture[5], "data/textures/synthleather.bmp", 236, 177);
     LoadTexture(materialTexture[6], "data/textures/fabric.bmp", 626, 625);
     LoadTexture(materialTexture[7], "data/textures/NamePlateFront.bmp", 1024, 256);
+    LoadTexture(materialTexture[8], "data/textures/KasurKeras.bmp", 1899, 1144);
+    LoadTexture(materialTexture[9], "data/textures/Kasur.bmp", 768, 512);
+    LoadTexture(materialTexture[10], "data/textures/bantal.bmp", 910, 603);
 
+}
+
+void
+InitModules()
+{
     InitControl(&camera, &controlKey, &mousePos);
     InitRenderer(&camera, materialTexture, &ControlCallback);
 }
@@ -44,6 +52,7 @@ main(int argc, char ** argv)
     glutInitWindowSize(1366, 768);
     glutInitWindowPosition(2100, 100);
     glutCreateWindow("TR-GRAFKOM-ASDOS");
+    InitTextures();
     glutFullScreen();
 
     // Mouse
@@ -69,7 +78,7 @@ main(int argc, char ** argv)
         45.0f, (float)(900) / (float)(1600), 1.0f, 1000.0f
     );
 
-    Init();
+    InitModules();
     glutSetCursor(GLUT_CURSOR_NONE);
 
     glutTimerFunc(16, BlitDisplay, 0);

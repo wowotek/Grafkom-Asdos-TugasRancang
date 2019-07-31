@@ -77,6 +77,16 @@ DrawFloorGrid()
 }
 
 void
+DiningTable(Coord3D pos)
+{
+    Furniture::Table(Coord3D(0+pos.x, 0+pos.y, 0.6+pos.z));
+    Furniture::Chair(Coord3D(0.2+pos.x, 0+pos.y, 0+pos.z), false);
+    Furniture::Chair(Coord3D(1.0+pos.x, 0+pos.y, 0+pos.z), false);
+    Furniture::Chair(Coord3D(0.2+pos.x, 0+pos.y, 1.8+pos.z), true);
+    Furniture::Chair(Coord3D(1.0+pos.x, 0+pos.y, 1.8+pos.z), true);
+}
+
+void
 RenderDisplay()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 
@@ -90,7 +100,19 @@ RenderDisplay()
     glPopMatrix();
 
     glPushMatrix();
-    Furniture::NamePlate(Coord3D(0, 0, 0), true);
+    Furniture::NamePlate(Coord3D(0));
+    Structures::DrawHouse(Coord3D(8, 0, 0));
+
+    Furniture::Bed(Coord3D(17.5, 2.1, 0.4));
+    Furniture::Bed(Coord3D(21.25, 2.1, 0.4));
+
+    DiningTable(Coord3D(12, 2.1, 1));
+
+    Furniture::Couch(Coord3D(15.95, 2.1, 1), true);
+    Furniture::Couch(Coord3D(15.95, 2.1, 3), true);
+
+    Furniture::Drawer(Coord3D(19.3, 2.1, 0.3));
+
     glPopMatrix();
 
     glMatrixMode(GL_PROJECTION);
