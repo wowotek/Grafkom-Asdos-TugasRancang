@@ -290,14 +290,14 @@ Structures::House(Coord3D pos)
     Box(Coord3D(10.7+pos.x, 2.1+pos.y, 5.1+pos.z), Coord3D(4.45, 1.25, 0.1), sTexs[3]);
 
     // Teras Depan
-    Box(Coord3D(-3+pos.x, 2+pos.y, 4+pos.z), Coord3D(3, 0.1, 2.25));
+    Box(Coord3D(-3+pos.x, 2+pos.y, 4+pos.z), Coord3D(3, 0.1, 2.25), sTexs[4]);
 
     // Tangga Depan Kiri
     for(float i=0; i < 2; i += 0.2){
-        Box(Coord3D(-3+pos.x, i+pos.y, i+2+pos.z), Coord3D(1.5, 0.1, 0.4));
+        Box(Coord3D(-3+pos.x, i+pos.y, i+2+pos.z), Coord3D(1.5, 0.1, 0.4), sTexs[1]);
     }
     // Tangga Depan Kanan
     for(float i=0; i < 2; i += 0.2){
-        Box(Coord3D(-3+pos.x, i+pos.y, -i+7.85+pos.z), Coord3D(1.5, 0.1, 0.4));
+        Box(Coord3D(-3+pos.x, i+pos.y, -i+7.85+pos.z), Coord3D(1.5, 0.1, 0.4), sTexs[1]);
     }
 }
