@@ -19,8 +19,8 @@ unsigned int * materialTexture;
 void
 Init()
 {
-    materialTexture = new unsigned int[7];
-    glGenTextures(7, materialTexture);
+    materialTexture = new unsigned int[8];
+    glGenTextures(8, materialTexture);
     LoadTexture(materialTexture[0], "data/textures/grass1.bmp", 1024, 1024);
     LoadTexture(materialTexture[1], "data/textures/hardwood.bmp", 1024, 1024);
     LoadTexture(materialTexture[2], "data/textures/concrete.bmp", 1600, 1600);
@@ -28,6 +28,7 @@ Init()
     LoadTexture(materialTexture[4], "data/textures/maple.bmp", 944, 944);
     LoadTexture(materialTexture[5], "data/textures/synthleather.bmp", 236, 177);
     LoadTexture(materialTexture[6], "data/textures/fabric.bmp", 626, 625);
+    LoadTexture(materialTexture[7], "data/textures/NamePlateFront.bmp", 1024, 256);
 
     InitControl(&camera, &controlKey, &mousePos);
     InitRenderer(&camera, materialTexture, &ControlCallback);

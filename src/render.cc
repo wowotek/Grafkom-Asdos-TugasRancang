@@ -16,9 +16,15 @@ InitRenderer(Camera * initCamera, unsigned int * initTexture, void (* cb)())
     texs = initTexture;
     Furniture::InitFurnituresTexture(texs);
     Structures::InitStructureTexture(texs);
-    
+
     cameraRendererP = initCamera;
     controlCallback = cb;
+}
+
+inline void
+DrawSkyBoxes()
+{
+
 }
 
 inline void
@@ -84,7 +90,7 @@ RenderDisplay()
     glPopMatrix();
 
     glPushMatrix();
-    Structures::DrawHouse();
+    Furniture::NamePlate(Coord3D(0, 0, 0), true);
     glPopMatrix();
 
     glMatrixMode(GL_PROJECTION);

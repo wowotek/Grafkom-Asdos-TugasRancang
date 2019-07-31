@@ -16,6 +16,5 @@ struct CubeFaceColor
 
 void Box(Coord3D, Coord3D);
 void Box(Coord3D, Coord3D, unsigned int tex);
-void Box(Coord3D, Coord3D, CubeFaceColor *);
 
 #endif

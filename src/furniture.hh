@@ -9,6 +9,7 @@ namespace Furniture{
     void Chair(Coord3D, bool);
     void Couch(Coord3D, bool);
     void Bed(Coord3D, bool);
+    void NamePlate(Coord3D, bool);
 }
 
 #endif

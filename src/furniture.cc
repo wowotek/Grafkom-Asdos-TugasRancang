@@ -82,3 +82,73 @@ Furniture::Bed(Coord3D pos, bool facing)
 
     }
 }
+
+void
+Furniture::NamePlate(Coord3D pos, bool facing)
+{
+    if(facing){
+        glColor3ub(255, 194, 89);
+        Box(Coord3D(0.1+pos.x, 0.0+pos.y, 0.5+pos.z), Coord3D(0.125, 1, 0.125), fTex[3]);
+        Box(Coord3D(0.1+pos.x, 0.0+pos.y, 1.5+pos.z), Coord3D(0.125, 1, 0.125), fTex[3]);
+
+        float sx = 0.1;
+        float sy = 0.5;
+        float sz = 2;
+
+        // Front
+        glBindTexture(GL_TEXTURE_2D, fTex[3]);
+        glBegin(GL_QUADS);
+            glTexCoord2f(0, 0); glVertex3f(up3add(pos, 0, 0.5+0, 0));
+            glTexCoord2f(0, 1); glVertex3f(up3add(pos, sx,0.5+0, 0));
+            glTexCoord2f(1, 1); glVertex3f(up3add(pos, sx,0.5+sy, 0));
+            glTexCoord2f(1, 0); glVertex3f(up3add(pos, 0, 0.5+sy, 0));
+        glEnd();
+
+        // Kiri
+        glBindTexture(GL_TEXTURE_2D, fTex[7]);
+        glBegin(GL_QUADS);
+            glTexCoord2f(0, 0); glVertex3f(up3add(pos, 0,0.5+0, 0));
+            glTexCoord2f(1, 0); glVertex3f(up3add(pos, 0,0.5+0, sz));
+            glTexCoord2f(1, 1); glVertex3f(up3add(pos, 0,0.5+sy, sz));
+            glTexCoord2f(0, 1); glVertex3f(up3add(pos, 0,0.5+sy, 0));
+        glEnd();
+
+        // Atas
+        glBindTexture(GL_TEXTURE_2D, fTex[3]);
+        glBegin(GL_QUADS);
+            glTexCoord2f(0, 0); glVertex3f(up3add(pos, 0, 0.5+sy, 0));
+            glTexCoord2f(0, 1); glVertex3f(up3add(pos, sx,0.5+sy, 0));
+            glTexCoord2f(1, 1); glVertex3f(up3add(pos, sx,0.5+sy, sz));
+            glTexCoord2f(1, 0); glVertex3f(up3add(pos, 0, 0.5+sy, sz));
+        glEnd();
+
+        // Kanan
+        glBindTexture(GL_TEXTURE_2D, fTex[3]);
+        glBegin(GL_QUADS);
+            glTexCoord2f(0, 0); glVertex3f(up3add(pos, sx,0.5+sy, 0));
+            glTexCoord2f(0, 1); glVertex3f(up3add(pos, sx,0.5+sy, sz));
+            glTexCoord2f(1, 1); glVertex3f(up3add(pos, sx,0.5+0, sz));
+            glTexCoord2f(1, 0); glVertex3f(up3add(pos, sx,0.5+0, 0));
+        glEnd();
+
+        // Bawah
+        glBindTexture(GL_TEXTURE_2D, fTex[3]);
+        glBegin(GL_QUADS);
+            glTexCoord2f(0, 0); glVertex3f(up3add(pos, sx,0.5+0, 0));
+            glTexCoord2f(0, 1); glVertex3f(up3add(pos, 0, 0.5+0, 0));
+            glTexCoord2f(1, 1); glVertex3f(up3add(pos, 0, 0.5+0, sz));
+            glTexCoord2f(1, 0); glVertex3f(up3add(pos, sx,0.5+0, sz));
+        glEnd();
+
+        // Belakang
+        glBindTexture(GL_TEXTURE_2D, fTex[3]);
+        glBegin(GL_QUADS);
+            glTexCoord2f(0, 0); glVertex3f(up3add(pos, 0, 0.5+sy, sz));
+            glTexCoord2f(0, 1); glVertex3f(up3add(pos, sx,0.5+sy, sz));
+            glTexCoord2f(1, 1); glVertex3f(up3add(pos, sx,0.5+0, sz));
+            glTexCoord2f(1, 0); glVertex3f(up3add(pos, 0, 0.5+0, sz));
+        glEnd();
+    } else {
+
+    }
+}
