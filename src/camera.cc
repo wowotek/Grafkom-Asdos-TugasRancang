@@ -46,6 +46,12 @@ Camera::GetPos(float &x, float &y, float &z)
     z = m_z;
 }
 
+Coord3D
+Camera::GetPos()
+{
+	return Coord3D(m_x, m_y, m_z);
+}
+
 void
 Camera::GetDirectionVector(float &x, float &y, float &z)
 {

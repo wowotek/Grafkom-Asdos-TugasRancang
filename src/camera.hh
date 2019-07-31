@@ -1,6 +1,7 @@
 #ifndef __CAMERA_HH__
 #define __CAMERA_HH__
 
+#include "common.hh"
 /*
 Generic camera class by Nghia Ho
 */
@@ -15,6 +16,7 @@ public:
 	void Refresh();
 	void SetPos(float x, float y, float z);
     void GetPos(float &x, float &y, float &z);
+	Coord3D GetPos();
     void GetDirectionVector(float &x, float &y, float &z);
 	void SetYaw(float angle);
 	void SetPitch(float angle);

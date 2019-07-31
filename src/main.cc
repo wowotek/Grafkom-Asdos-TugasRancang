@@ -19,19 +19,25 @@ unsigned int * materialTexture;
 void
 InitTextures()
 {
-    materialTexture = new unsigned int[11];
-    glGenTextures(11, materialTexture);
-    LoadTexture(materialTexture[0], "data/textures/grass1.bmp", 1024, 1024);
-    LoadTexture(materialTexture[1], "data/textures/hardwood.bmp", 1024, 1024);
-    LoadTexture(materialTexture[2], "data/textures/concrete.bmp", 1600, 1600);
-    LoadTexture(materialTexture[3], "data/textures/woodplank.bmp", 2048, 2048);
-    LoadTexture(materialTexture[4], "data/textures/maple.bmp", 944, 944);
-    LoadTexture(materialTexture[5], "data/textures/synthleather.bmp", 236, 177);
-    LoadTexture(materialTexture[6], "data/textures/fabric.bmp", 626, 625);
-    LoadTexture(materialTexture[7], "data/textures/NamePlateFront.bmp", 1024, 256);
-    LoadTexture(materialTexture[8], "data/textures/KasurKeras.bmp", 1899, 1144);
-    LoadTexture(materialTexture[9], "data/textures/Kasur.bmp", 768, 512);
+    materialTexture = new unsigned int[16];
+    glGenTextures(16, materialTexture);
+    LoadTexture(materialTexture[0] , "data/textures/grass1.bmp", 1024, 1024);
+    LoadTexture(materialTexture[1] , "data/textures/hardwood.bmp", 1024, 1024);
+    LoadTexture(materialTexture[2] , "data/textures/concrete.bmp", 1600, 1600);
+    LoadTexture(materialTexture[3] , "data/textures/woodplank.bmp", 2048, 2048);
+    LoadTexture(materialTexture[4] , "data/textures/maple.bmp", 944, 944);
+    LoadTexture(materialTexture[5] , "data/textures/synthleather.bmp", 236, 177);
+    LoadTexture(materialTexture[6] , "data/textures/fabric.bmp", 626, 625);
+    LoadTexture(materialTexture[7] , "data/textures/NamePlateFront.bmp", 1024, 256);
+    LoadTexture(materialTexture[8] , "data/textures/KasurKeras.bmp", 1899, 1144);
+    LoadTexture(materialTexture[9] , "data/textures/Kasur.bmp", 768, 512);
     LoadTexture(materialTexture[10], "data/textures/bantal.bmp", 910, 603);
+
+    LoadTexture(materialTexture[11], "data/skybox/back.bmp", 512, 512);
+    LoadTexture(materialTexture[12], "data/skybox/front.bmp", 512, 512);
+    LoadTexture(materialTexture[13], "data/skybox/left.bmp", 512, 512);
+    LoadTexture(materialTexture[14], "data/skybox/right.bmp", 512, 512);
+    LoadTexture(materialTexture[15], "data/skybox/top.bmp", 512, 512);
 
 }
 

@@ -133,6 +133,16 @@ Furniture::Drawer(Coord3D pos)
 }
 
 void
+Furniture::DiningTable(Coord3D pos)
+{
+    Furniture::Table(Coord3D(0+pos.x, 0+pos.y, 0.6+pos.z));
+    Furniture::Chair(Coord3D(0.2+pos.x, 0+pos.y, 0+pos.z), false);
+    Furniture::Chair(Coord3D(1.0+pos.x, 0+pos.y, 0+pos.z), false);
+    Furniture::Chair(Coord3D(0.2+pos.x, 0+pos.y, 1.8+pos.z), true);
+    Furniture::Chair(Coord3D(1.0+pos.x, 0+pos.y, 1.8+pos.z), true);
+}
+
+void
 Furniture::NamePlate(Coord3D pos)
 {
     glColor3ub(255, 194, 89);
