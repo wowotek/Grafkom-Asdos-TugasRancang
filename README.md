@@ -1,4 +1,4 @@
-# Grafkom-Dosen-TugasRancang
+# Grafkom-Asdos-TugasRancang
 
 > Tugas Ini di rilis oleh  **Erlangga Ibrahim** secara terbuka (*Open Source*)
 > Dibawah Lisensi **GNU GPLv3**. untuk keterangan dan informasi lebih lanjut mengenai
