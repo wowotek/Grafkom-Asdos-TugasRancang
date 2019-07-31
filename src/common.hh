@@ -122,8 +122,8 @@ struct MousePos{
         hX = (pX - (glutGet(GLUT_WINDOW_WIDTH) / 2));
         hY = ((glutGet(GLUT_WINDOW_HEIGHT) / 2) - pY);
 
-        cX = mapRange(hX, -800, 800, -0.1, 0.1);
-        cY = mapRange(hY, -450, 450, -0.1, 0.1);
+        cX = mapRange(hX, -800, 800, -0.5, 0.5);
+        cY = mapRange(hY, -450, 450, -0.5, 0.5);
     }
     
     MousePos() = default;

@@ -85,7 +85,7 @@ main(int argc, char ** argv)
     );
 
     InitModules();
-    glutSetCursor(GLUT_CURSOR_NONE);
+    glutSetCursor(GLUT_CURSOR_CROSSHAIR);
 
     glutTimerFunc(16, BlitDisplay, 0);
 

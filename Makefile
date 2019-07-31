@@ -1,4 +1,4 @@
-CC		= clang++
+CC		= g++
 CFLAGS	= -W -Wall
 CDEPS	= -lGL -lGLU -lglut
 

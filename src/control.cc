@@ -22,6 +22,12 @@ InitControl(Camera * initCamera, ControlKey * initControlKey, MousePos * initMou
 void ToggleCursorCenter()
 {
     cursorCentered = !cursorCentered;
+    if(cursorCentered)
+    {
+        glutSetCursor(GLUT_CURSOR_NONE);
+    } else {
+        glutSetCursor(GLUT_CURSOR_CROSSHAIR);
+    }
 }
 
 void
