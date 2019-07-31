@@ -2,7 +2,7 @@ CC		= g++
 CFLAGS	= -W -Wall
 CDEPS	= -lGL -lGLU -lglut
 
-EXEC	= koeboes.app
+EXEC	= trAsdos.app
 
 all: allnotice build run
 build: buildnotice remdir makedir $(EXEC) cpdatadir
